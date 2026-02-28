@@ -1,83 +1,86 @@
-.header {
-  background: #f2f2f2;
-  height: 100vh;
-  width: 100vw;
+// ─── Variables ────────────────────────────────────────────────────────────────
+
+$color-black: #000;
+$color-white: #fff;
+$color-bg: #f5f5f5; // neutral-100 equivalent
+$border-radius-pill: 9999px;
+$border-width: 2px;
+$nav-padding: 4px;
+
+// ─── Wrapper ──────────────────────────────────────────────────────────────────
+
+.wrapper {
+  background-color: $color-bg;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// ─── Nav ──────────────────────────────────────────────────────────────────────
+
+.nav {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  list-style: none;
+  margin: 0 auto;
+  padding: $nav-padding;
+  width: fit-content;
+  border-radius: $border-radius-pill;
+  border: $border-width solid $color-black;
+  background-color: $color-white;
+}
 
-  .navContainer {
-    position: relative;
-    background: #222121;
-    color: #f1f1f1;
-    height: 60px;
-    width: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 35px;
-    cursor: pointer;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    p {
-      position: absolute;
-      margin: 0;
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      pointer-events: none;
-    }
+// ─── Tab ──────────────────────────────────────────────────────────────────────
 
-    .nav {
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      ul {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        height: 40px;
-        .pill {
-          position: absolute;
-          height: 100%;
-          background: #f1f1f1;
-          border-radius: 20px;
-          z-index: 0;
-          opacity: 0;
+.tab {
+  position: relative;
+  z-index: 10;
+  display: block;
+  cursor: pointer;
 
-          &:hover {
-            opacity: 1;
-          }
-        }
-        li {
-          position: relative;
-          z-index: 1;
-          flex: 1;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+  // mobile-first
+  padding: 6px 12px;
+  font-size: 10px;
 
-          a {
-            text-decoration: none;
-            color: #f1f1f1;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-            position: relative;
-            z-index: 2;
-          }
-        }
-      }
-    }
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-white;
+
+  // mix-blend-mode so text inverts over the sliding cursor
+  mix-blend-mode: difference;
+
+  user-select: none;
+
+  // md breakpoint (≥ 768 px)
+  @media (min-width: 768px) {
+    padding: 12px 20px;
+    font-size: 16px;
   }
+}
+
+// ─── Cursor ───────────────────────────────────────────────────────────────────
+
+.cursor {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+
+  border-radius: $border-radius-pill;
+  background-color: $color-black;
+
+  left: 0;
+  width: 0;
+  opacity: 0;
+
+  // md breakpoint
+  @media (min-width: 768px) {
+    height: 48px;
+  }
+
+  // pointer-events: none so it doesn't block tab hover events
+  pointer-events: none;
 }
