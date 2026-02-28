@@ -20,6 +20,7 @@
     cursor: pointer;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    will-change: width;
 
     p {
       position: absolute;
@@ -30,6 +31,7 @@
       color: #f2f2f2;
       display: flex;
       user-select: none;
+      white-space: nowrap;
     }
 
     nav {
@@ -39,6 +41,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: none;
 
       ul {
         position: relative;
@@ -61,6 +64,7 @@
           left: 0;
           opacity: 0;
           z-index: 0;
+          will-change: transform, width, opacity;
         }
 
         li {
@@ -68,16 +72,21 @@
           z-index: 1;
           padding: 10px 35px;
           cursor: pointer;
-          transition: color 0.3s;
 
           a {
+            display: inline-block;
             text-decoration: none;
             color: #f2f2f2;
             font-size: 0.9rem;
             font-weight: 400;
+            white-space: nowrap;
           }
         }
       }
+    }
+
+    &:hover nav {
+      pointer-events: auto;
     }
   }
 }
